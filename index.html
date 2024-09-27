@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable CSS Gradient Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .example-container {
+            background-color: #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .cap {
+            width: 200px;
+            height: 100px;
+            background-image: linear-gradient(to right, red, yellow);
+            margin-top: 10px;
+        }
+
+        .editor-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .editor-btn {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .run-btn {
+            padding: 10px 15px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+        }
+
+        .output {
+            width: 200px;
+            height: 100px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<h2>Linear Gradient Example</h2>
+<div class="cap"></div><br>
+
+
+    <div class="example-container">
+        <pre><code>.cap {
+    background-image: linear-gradient(to right, red, yellow);
+}</code></pre>
+        <button class="editor-btn" onclick="openEditor()">Edit Code</button>
+    </div>
+
+    <div class="editor-section" id="editor-section">
+        <textarea id="code-editor">
+.cap {
+    width: 200px;
+    height: 100px;
+    background-image: linear-gradient(to right, red, yellow);
+}
+        </textarea>
+        <button class="run-btn" onclick="runCode()">Run</button>
+        <div class="output" id="live-output"></div>
+    </div>
+
+    <script>
+        function openEditor() {
+            document.querySelector('.example-container').style.display = 'none';
+            document.getElementById('editor-section').style.display = 'block';
+
+            runCode();
+        }
+
+        function runCode() {
+            const code = document.getElementById('code-editor').value;
+            const outputDiv = document.getElementById('live-output');
+
+            outputDiv.innerHTML = '';
+
+            const styleTag = document.createElement('style');
+            styleTag.textContent = code;
+
+            // document.head.appendChild(styleTag);
+
+            const newDiv = document.createElement('div');
+            newDiv.className = 'cap';
+
+            outputDiv.appendChild(newDiv);
+        }
+    </script>
+
+</body>
+</html>
